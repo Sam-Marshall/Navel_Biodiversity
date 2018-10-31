@@ -7,6 +7,8 @@ function buildMetadata(sample) {
         Object.entries(d).forEach((d, i) => {
             metaDiv.append('p').text(d[0] + ': ' + d[1]);
         });
+        d3.select('#currentSubject').text(' ');
+        d3.select('#currentSubject').text('Subject ID: ' + d['sample']);
 
         var WFREQ = d['WFREQ'];
 
@@ -24,8 +26,10 @@ function buildMetadata(sample) {
             pathY = String(y),
             pathEnd = ' Z';
         var path = mainPath.concat(pathX, space, pathY, pathEnd);
-        console.log(WFREQ);
-        console.log(degrees);
+
+        var options = {
+            displayModeBar: false
+        };
 
         var guageData = [{
                 type: 'scatter',
@@ -40,7 +44,7 @@ function buildMetadata(sample) {
             {
                 values: [50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50],
                 rotation: 90,
-                text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1', ' '],
+                text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1', WFREQ +' washes/week'],
                 textinfo: 'text',
                 textposition: 'inside',
                 marker: {
@@ -85,7 +89,7 @@ function buildMetadata(sample) {
             }
         };
 
-        Plotly.newPlot('gauge', guageData, layout);
+        Plotly.newPlot('gauge', guageData, layout, options);
     });
 
 }
@@ -94,7 +98,7 @@ function buildCharts(sample) {
 
     d3.json('/samples/' + sample).then((d, i) => {
 
-        var data = []
+        var data = [];
         var otu_ids = d.otu_ids;
         var otu_labels = d.otu_labels;
         var sample_values = d.sample_values;
@@ -111,6 +115,10 @@ function buildCharts(sample) {
         });
         var topTen = data.slice(0, 10);
 
+        var options = {
+            displayModeBar: false
+        };
+
         //Building a Pie Chart showing the top ten represented samples
         var pieTrace = {
             values: topTen.map(d => d.sample_value),
@@ -124,7 +132,7 @@ function buildCharts(sample) {
             title: 'Top Ten Bacteria OTU Present'
         };
 
-        Plotly.newPlot('pie', pieData, pieLayout);
+        Plotly.newPlot('pie', pieData, pieLayout, options);
 
         //Building a Bubble Chart showing all samples and relative adundance
         var bubbleTrace = {
@@ -139,7 +147,7 @@ function buildCharts(sample) {
         }
 
         var bubbleData = [bubbleTrace];
-        Plotly.newPlot('bubble', bubbleData);
+        Plotly.newPlot('bubble', bubbleData, options);
 
     });
 }
@@ -173,3 +181,17 @@ function optionChanged(newSample) {
 
 // Initializing the dashboard
 init();
+
+d3.select('#sidebarCollapse').on('click', function () {
+    var test;
+    d3.select('#sidebar').classed("active", !d3.select('#sidebar').classed("active"));
+    d3.select('#mainpage').classed("active", !d3.select('#mainpage').classed("active"));
+    var sideClass = d3.select('#sidebar').attr('class');
+    if (sideClass == 'container active') {
+        test = true;
+    }
+    else {
+        test = false;
+    }
+    test ? d3.select('#buttonText').text('View Metadata - Choose New Subject') : d3.select('#buttonText').text('Collapse Metadata');
+});

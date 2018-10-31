@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    z-index: 1000;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #7386D5;
+    transition: all .5s ease-in-out !important;
+    padding-top: 15px;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#mainpage{
+    transition: all .5s ease-in-out !important;
+}
+
+#mainpage.active{
+    margin-left: 250px;
+}
