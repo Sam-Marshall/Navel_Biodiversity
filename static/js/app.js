@@ -7,7 +7,7 @@ function buildMetadata(sample) {
         Object.entries(d).forEach((d, i) => {
             metaDiv.append('p').text(d[0] + ': ' + d[1]);
         });
-        
+
         var WFREQ = d['WFREQ'];
 
         // Trig to calc meter point
@@ -47,7 +47,7 @@ function buildMetadata(sample) {
                     colors: ['rgb(132,181,137)', 'rgb(137,188,142)',
                         'rgb(139,192,134)', 'rgb(183,205,143)',
                         'rgb(213,229,154)', 'rgb(229,231,176)',
-                        'rgb(234,231,197)', 'rgb(244,241,228)', 
+                        'rgb(234,231,197)', 'rgb(244,241,228)',
                         'rgb(248,243,236)', 'rgba(255, 255, 255, 0)'
                     ]
                 },
@@ -70,7 +70,7 @@ function buildMetadata(sample) {
             }],
             title: 'Belly Button Washing Frequency',
             height: '100%',
-            width: 'auto',
+            width: '100%',
             xaxis: {
                 zeroline: false,
                 showticklabels: false,
@@ -115,7 +115,8 @@ function buildCharts(sample) {
         var pieTrace = {
             values: topTen.map(d => d.sample_value),
             labels: topTen.map(d => d.otu_id),
-            type: 'pie'
+            type: 'pie',
+            hoverinfo: 'label'
         };
         var pieData = [pieTrace];
 

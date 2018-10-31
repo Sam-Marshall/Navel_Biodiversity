@@ -7,44 +7,61 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Navel Biodiversity</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+    #gauge_parent {
+        position: relative;
+    }
+
+    #gauge {
+        position: absolute;
+        left: 0;
+    }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 jumbotron text-center">
-                <h1>Navel Biodiversity</h1>
-                <p>Use the interactive charts below to explore the dataset</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <div class="row">
-                    <div class="well">
-                        <h5>SELECT Sample:</h5>
-                        <select id="selDataset" onchange="optionChanged(this.value)"></select>
-                    </div>
+    <div class='wrapper'>
+        <div class='col-md-2' style="background-color: blue">
+            <div class="panel panel-primary text-center">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Select Subject ID</h3>
                 </div>
-                <div class="row">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Sample MetaData</h3>
-                        </div>
-                        <div id="sample-metadata" class="panel-body"></div>
-                    </div>
+                <div class="panel-body">
+                    <select id="selDataset" onchange="optionChanged(this.value)"></select>
                 </div>
             </div>
-            <div class="col-md-5">
-                <div id="pie"></div>
-            </div>
-            <div class="col-md-5">
-                <div id="gauge"></div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sample MetaData</h3>
+                </div>
+                <div id="sample-metadata" class="panel-body"></div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="bubble"></div>
+        <div class='col-md-10'>
+            <div class="row">
+                <div class="col-md-12 jumbotron text-center">
+                    <h1>Navel Biodiversity Dashboard</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div id="pie"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row" id="gauge_parent">
+                        <div id="gauge"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div id="bubble"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
