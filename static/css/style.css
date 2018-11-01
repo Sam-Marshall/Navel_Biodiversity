@@ -1,6 +1,42 @@
 body {
-    background-color: rgb(244, 244, 248) !important;
+    background-color: rgb(244, 244, 248);
     box-sizing: border-box;
+    transition-duration: 2s !important;
+    transition-timing-function: ease !important;
+}
+
+p:hover,
+#sidebarCollapse:hover {
+    text-decoration: none;
+    background-color: rgba(246, 204, 0, .5);
+    color: black;
+    transition-duration: .5s;
+    transition-timing-function: ease;
+}
+
+#pie {
+    z-index: 500;
+    width: 100%;
+}
+
+.panel-heading,
+.jumbotron {
+    background-color: rgba(246, 204, 0, .5) !important;
+}
+
+.jumbotron {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+.panel-body,
+.panel-heading,
+#sidebarCollapse:hover {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: rgba(50, 48, 50, .3) !important;
 }
 
 .wrapper {
@@ -17,8 +53,8 @@ body {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: rgb(50,48,50);
-    transition: all .5s ease-in-out !important;
+    background: rgb(50, 48, 50);
+    transition: all .5s ease-in-out;
     padding-top: 15px;
 }
 
@@ -27,17 +63,26 @@ body {
     max-width: 100%;
 }
 
+#gauge .plot-container .svg-container,
+#gauge .plot-container .svg-container .main-svg,
+#gauge .plot-container .svg-container .main-svg g {
+    max-width: 125% !important;
+    margin-left: -25px;
+}
+
+
+
 #sidebar.active {
     margin-left: -250px;
 }
 
-#sidebarCollapse{
-    background: rgb(50,48,50);
-    color: white;
+#sidebarCollapse {
+    background: rgb(50, 48, 50);
+    color: rgb(246, 204, 0);
 }
 
 #mainpage {
-    transition: all .5s ease-in-out !important;
+    transition: all .5s ease-in-out;
 }
 
 #mainpage.active {

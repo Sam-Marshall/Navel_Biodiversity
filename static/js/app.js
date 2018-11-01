@@ -44,7 +44,7 @@ function buildMetadata(sample) {
             {
                 values: [50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50],
                 rotation: 90,
-                text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1', WFREQ +' washes/week'],
+                text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1', WFREQ + ' washes/week'],
                 textinfo: 'text',
                 textposition: 'inside',
                 marker: {
@@ -92,7 +92,7 @@ function buildMetadata(sample) {
         var svg = d3.select('#gauage').append('svg');
         svg.attr('id', 'gauge_svg')
 
-        Plotly.newPlot('gauge', guageData, layout, options);
+        Plotly.newPlot('gauge', guageData, layout, options, { responsive: true });
     });
 
 }
@@ -127,15 +127,20 @@ function buildCharts(sample) {
             values: topTen.map(d => d.sample_value),
             labels: topTen.map(d => d.otu_id),
             type: 'pie',
-            hoverinfo: 'label'
+            hoverinfo: 'OTU+label'
         };
         var pieData = [pieTrace];
 
         var pieLayout = {
+            showlegend: true,
+            legend: {
+                x: -0.1,
+                y: 0.5
+            },
             title: 'Top Ten Bacteria OTU Present'
         };
 
-        Plotly.newPlot('pie', pieData, pieLayout, options);
+        Plotly.newPlot('pie', pieData, pieLayout, options, { responsive: true });
 
         //Building a Bubble Chart showing all samples and relative adundance
         var bubbleTrace = {
@@ -145,12 +150,13 @@ function buildCharts(sample) {
             mode: 'markers',
             marker: {
                 size: data.map(d => d.sample_value),
-                color: data.map(d => d.otu_id)
+                color: data.map(d => d.otu_id),
+                colorscale: 'Viridis'
             }
         }
 
         var bubbleData = [bubbleTrace];
-        Plotly.newPlot('bubble', bubbleData, options);
+        Plotly.newPlot('bubble', bubbleData, options, { responsive: true });
 
     });
 }
@@ -185,15 +191,14 @@ function optionChanged(newSample) {
 // Initializing the dashboard
 init();
 
-d3.select('#sidebarCollapse').on('click', function () {
+d3.select('#sidebarCollapse').on('click', function() {
     var test;
     d3.select('#sidebar').classed("active", !d3.select('#sidebar').classed("active"));
     d3.select('#mainpage').classed("active", !d3.select('#mainpage').classed("active"));
     var sideClass = d3.select('#sidebar').attr('class');
     if (sideClass == 'container active') {
         test = true;
-    }
-    else {
+    } else {
         test = false;
     }
     test ? d3.select('#buttonText').text('View Metadata - Choose New Subject') : d3.select('#buttonText').text('Collapse Metadata');
