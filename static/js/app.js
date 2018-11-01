@@ -89,6 +89,9 @@ function buildMetadata(sample) {
             }
         };
 
+        var svg = d3.select('#gauage').append('svg');
+        svg.attr('id', 'gauge_svg')
+
         Plotly.newPlot('gauge', guageData, layout, options);
     });
 

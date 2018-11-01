@@ -14,7 +14,7 @@
     <div class='wrapper'>
 
         <div id='sidebar' class='active container'>
-            <div class="panel panel-primary text-center">
+            <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">Select Subject ID</h3>
                 </div>
@@ -22,9 +22,9 @@
                     <select id="selDataset" onchange="optionChanged(this.value)"></select>
                 </div>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Sample MetaData</h3>
+                    <h3 class="panel-title text-center">MetaData</h3>
                 </div>
                 <div id="sample-metadata" class="panel-body"></div>
             </div>
@@ -35,8 +35,7 @@
                 <div class="col-md-12 jumbotron text-center">
                     <h1>Navel Biodiversity Dashboard</h1>
                     <h3 id='currentSubject'></h3>
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
+                    <button type="button" id="sidebarCollapse" class="btn">
                         <span id="buttonText">View Metadata - Choose New Subject</span>
                     </button>
                 </div>
@@ -44,19 +43,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="row">
-                        <div id="pie"></div>
+                        <div id="pie" class='plot'></div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row" id="gauge_parent">
-                        <div id="gauge"></div>
+                        <div id="gauge" class='plot'></div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div id="bubble"></div>
+                        <div id="bubble" class='plot'></div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(244, 244, 248) !important;
+    box-sizing: border-box;
+}
+
 .wrapper {
     display: flex;
     width: 100%;
@@ -12,19 +17,29 @@
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background: rgb(50,48,50);
     transition: all .5s ease-in-out !important;
     padding-top: 15px;
+}
+
+.plot {
+    overflow: hidden;
+    max-width: 100%;
 }
 
 #sidebar.active {
     margin-left: -250px;
 }
 
-#mainpage{
+#sidebarCollapse{
+    background: rgb(50,48,50);
+    color: white;
+}
+
+#mainpage {
     transition: all .5s ease-in-out !important;
 }
 
-#mainpage.active{
+#mainpage.active {
     margin-left: 250px;
 }
