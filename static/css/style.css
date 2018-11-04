@@ -66,11 +66,18 @@ p:hover,
 #gauge .plot-container .svg-container,
 #gauge .plot-container .svg-container .main-svg,
 #gauge .plot-container .svg-container .main-svg g {
-    max-width: 125% !important;
-    margin-left: -25px;
+    max-width: 130% !important;
+    margin-left: -30px;
 }
 
+.plot-mom {
+    width: 100%;
+    padding-bottom: 15px;
+}
 
+.plot-mom #pie {
+    margin-right: 0;
+}
 
 #sidebar.active {
     margin-left: -250px;
